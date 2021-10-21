@@ -77,9 +77,12 @@
                       </tr>
                     </thead>
                     <tbody>
+                        @php 
+                        $i = 1;
+                        @endphp
                       @foreach($cont->contestants as $contestant)
                       <tr>
-                        <td scope="row">{{ $counter ++ }}</td>
+                        <td scope="row">{{ $i++ }}</td>
                         <td>{{ $contestant->name }}</td>
                         <td>{{ $contestant->votecount }}</td>
                         <td>

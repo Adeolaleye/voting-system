@@ -16,32 +16,39 @@
                         <h2 class="display-4 font-weight-normal text-white">The opportunity to vote your preferred nominees is here</h2>
                         <div class="mt-6">
                             <ul id="countdown">
-                                <li id="days">
-                                  <div class="number">00</div>
+                              @if ( $enddate > $date)
+                                <li>
+                                  <div id="days" class="number">00</div>
                                   <div class="label">Days</div>
                                 </li>
-                                <li id="hours">
-                                  <div class="number">00</div>
+                                <li>
+                                  <div id="hours" class="number">00</div>
                                   <div class="label">Hours</div>
                                 </li>
-                                <li id="minutes">
-                                  <div class="number">00</div>
+                                <li>
+                                  <div id="minutes" class="number">00</div>
                                   <div class="label">Minutes</div>
                                 </li>
-                                <li id="seconds">
-                                  <div class="number">00</div>
+                                <li>
+                                  <div id="seconds" class="number">00</div>
                                   <div class="label">Seconds</div>
-                                </li>
+                                </li>                              
+                              @endif
+                              @if ( $enddate <= $date) 
+                                <h2 class="display-4 font-weight-normal text-white">Voting Closed!</h2>                           
+                              @endif
                             </ul> 
                         </div>
+                        @if ( $enddate > $date)
                         <div class="btn-wrapper mt-2">
                             <a href="#vote" class="btn btn-primary btn-icon mt-3 mb-sm-0">
                                 <span class="btn-inner--text">Vote Now</span>
                             </a>
-                            <a href="{{route ('ticket') }}" class="btn btn-neutral btn-icon mt-3 mb-sm-0">
+                            {{-- <a href="{{route ('ticket') }}" class="btn btn-neutral btn-icon mt-3 mb-sm-0">
                                 <span class="btn-inner--text">Book A Sit</span>
-                            </a>
+                            </a> --}}
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -65,24 +72,29 @@
             </div>
           </div>
         <div class="row">
-            <div class="col-lg-12">
-                <h2 class="title display-3 text-center">Categories</h2>
-            </div>
-            @if ($counter > 0)
-                @foreach ($contestantCat as $contestant)
-                <div class="col-lg-6">
-                    <div class="info info-horizontal info-hover-primary card shadow m-4">
-                        <div class="description p-4">
-                            <p class="text-center">{{$contestant->contestantcategories}}</p>
-                            <a href="{{ route('contestant.show', $contestant->id) }}"
-                                class="btn btn-primary mb-4 mt-4 center">Click to vote</a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach 
+            @if ($enddate > $date)
+              <div class="col-lg-12">
+                  <h2 class="title display-3 text-center">Categories</h2>
+              </div>
+              @if ($counter > 0)
+                  @foreach ($contestantCat as $contestant)
+                  <div class="col-lg-6">
+                      <div class="info info-horizontal info-hover-primary card shadow m-4">
+                          <div class="description p-4">
+                              <p class="text-center">{{$contestant->contestantcategories}}</p>
+                              <a href="{{ route('contestant.show', $contestant->id) }}"
+                                  class="btn btn-primary mb-4 mt-4 center">Click to vote</a>
+                          </div>
+                      </div>
+                  </div>
+                  @endforeach 
+              @endif
+              @if ($counter == 0)
+                  <p>No Contestant Available</p>
+              @endif
             @endif
-            @if ($counter == 0)
-                <p>No Contestant Available</p>
+            @if ( $enddate <= $date) 
+                                            
             @endif
         </div>
     </div>
@@ -121,96 +133,25 @@
       text-transform: uppercase;
     }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script>
-    /* --------------------------
- * GLOBAL VARS
- * -------------------------- */
-// The date you want to count down to
-var targetDate = new Date("2021/11/30 11:59:00");   
+  (function () {
+const second = 1000,
+minute = second * 60,
+hour = minute * 60,
+day = hour * 24;
+let today = new Date(),
+                // month/day/year
+      enddate =  '10/20/2021 23:49:00';
+  const countDown = new Date(enddate).getTime(),
+      x = setInterval(function() {    
 
-// Other date related variables
-var days;
-var hrs;
-var min;
-var sec;
-
-/* --------------------------
- * ON DOCUMENT LOAD
- * -------------------------- */
-$(function() {
-   // Calculate time until launch date
-   timeToLaunch();
-  // Transition the current countdown from 0 
-  numberTransition('#days .number', days, 1000, 'easeOutQuad');
-  numberTransition('#hours .number', hrs, 1000, 'easeOutQuad');
-  numberTransition('#minutes .number', min, 1000, 'easeOutQuad');
-  numberTransition('#seconds .number', sec, 1000, 'easeOutQuad');
-  // Begin Countdown
-  setTimeout(countDownTimer,1001);
-});
-
-/* --------------------------
- * FIGURE OUT THE AMOUNT OF 
-   TIME LEFT BEFORE LAUNCH
- * -------------------------- */
-function timeToLaunch(){
-    // Get the current date
-    var currentDate = new Date();
-
-    // Find the difference between dates
-    var diff = (currentDate - targetDate)/1000;
-    var diff = Math.abs(Math.floor(diff));  
-
-    // Check number of days until target
-    days = Math.floor(diff/(24*60*60));
-    sec = diff - days * 24*60*60;
-
-    // Check number of hours until target
-    hrs = Math.floor(sec/(60*60));
-    sec = sec - hrs * 60*60;
-
-    // Check number of minutes until target
-    min = Math.floor(sec/(60));
-    sec = sec - min * 60;
-}
-
-/* --------------------------
- * DISPLAY THE CURRENT 
-   COUNT TO LAUNCH
- * -------------------------- */
-function countDownTimer(){ 
-    
-    // Figure out the time to launch
-    timeToLaunch();
-    
-    // Write to countdown component
-    $( "#days .number" ).text(days);
-    $( "#hours .number" ).text(hrs);
-    $( "#minutes .number" ).text(min);
-    $( "#seconds .number" ).text(sec);
-    
-    // Repeat the check every second
-    setTimeout(countDownTimer,1000);
-}
-
-/* --------------------------
- * TRANSITION NUMBERS FROM 0
-   TO CURRENT TIME UNTIL LAUNCH
- * -------------------------- */
-function numberTransition(id, endPoint, transitionDuration, transitionEase){
-  // Transition numbers from 0 to the final number
-  $({numberCount: $(id).text()}).animate({numberCount: endPoint}, {
-      duration: transitionDuration,
-      easing:transitionEase,
-      step: function() {
-        $(id).text(Math.floor(this.numberCount));
-      },
-      complete: function() {
-        $(id).text(this.numberCount);
-      }
-   }); 
-};
+        const now = new Date().getTime(),
+              distance = countDown - now;
+          document.getElementById("days").innerText = Math.floor(distance / (day)),
+          document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+          document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+          document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
+      }, 0)
+  }());
 </script>
 @endsection

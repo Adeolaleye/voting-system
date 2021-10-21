@@ -94,7 +94,7 @@
         <div class="row align-items-center justify-content-md-between">
           <div class="col-md-6">
             <div class="copyright">
-              &copy; 2021 <a href="https://sgtv.tv/" target="_blank">SGTV</a> Made by <a href="https://twitter.com/adeolaleye_" target="_blank">Addy</a>
+              &copy; 2021 <a href="https://sgtv.tv/" target="_blank">SGTV</a> Made by <a href="https://consode.com/" target="_blank">Consode</a>
             </div>
           </div>
           <div class="col-md-6">

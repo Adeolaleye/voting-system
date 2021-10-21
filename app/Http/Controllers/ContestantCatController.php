@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ip;
+use Carbon\Carbon;
 use App\Contestant;
 use App\contestantcat;
 use Illuminate\Http\Request;
@@ -25,11 +26,17 @@ class ContestantCatController extends Controller
         // dd($_SERVER['SERVER_SOFTWARE']);
         $contestant = contestantcat::all();
         $counter = $contestant->count();
+        $now= Carbon::now();
+        $enddate = date("20/10/2021 00:49:00");
+        $date = date('d/m/Y h:i:s');
+       // dd($date, $enddate);
         // 
         return view('home', [
             'contestantCat' => $contestant,
             'counter'  => $counter,
-        
+            'enddate' => $enddate,
+            'date' => $date,
+            'now' => $now,
         ]);
         
     }
