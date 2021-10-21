@@ -16,7 +16,7 @@
                         <h2 class="display-4 font-weight-normal text-white">The opportunity to vote your preferred nominees is here</h2>
                         <div class="mt-6">
                             <ul id="countdown">
-                              @if ( $enddate > $date)
+                              @if ( $enddate > $now)
                                 <li>
                                   <div id="days" class="number">00</div>
                                   <div class="label">Days</div>
@@ -34,12 +34,12 @@
                                   <div class="label">Seconds</div>
                                 </li>                              
                               @endif
-                              @if ( $enddate <= $date) 
+                              @if ( $enddate <= $now) 
                                 <h2 class="display-4 font-weight-normal text-white">Voting Closed!</h2>                           
                               @endif
                             </ul> 
                         </div>
-                        @if ( $enddate > $date)
+                        @if ( $enddate > $now)
                         <div class="btn-wrapper mt-2">
                             <a href="#vote" class="btn btn-primary btn-icon mt-3 mb-sm-0">
                                 <span class="btn-inner--text">Vote Now</span>
@@ -72,7 +72,7 @@
             </div>
           </div>
         <div class="row">
-            @if ($enddate > $date)
+            @if ($enddate > $now)
               <div class="col-lg-12">
                   <h2 class="title display-3 text-center">Categories</h2>
               </div>
@@ -93,7 +93,7 @@
                   <p>No Contestant Available</p>
               @endif
             @endif
-            @if ( $enddate <= $date) 
+            @if ( $enddate <= $now) 
                                             
             @endif
         </div>
@@ -141,7 +141,7 @@ hour = minute * 60,
 day = hour * 24;
 let today = new Date(),
                 // month/day/year
-      enddate =  '10/20/2021 23:49:00';
+      enddate =  '11/10/2021 23:49:00';
   const countDown = new Date(enddate).getTime(),
       x = setInterval(function() {    
 

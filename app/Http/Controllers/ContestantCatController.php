@@ -27,15 +27,15 @@ class ContestantCatController extends Controller
         $contestant = contestantcat::all();
         $counter = $contestant->count();
         $now= Carbon::now();
-        $enddate = date("20/10/2021 00:49:00");
-        $date = date('d/m/Y h:i:s');
-       // dd($date, $enddate);
+        $enddate = Carbon::now()->addDay(20);
+        //date('10/11/2021 23:49:00');
+    //     $date = date('d/m/Y h:i:s');
+    //    dd($enddate);
         // 
         return view('home', [
             'contestantCat' => $contestant,
             'counter'  => $counter,
             'enddate' => $enddate,
-            'date' => $date,
             'now' => $now,
         ]);
         
