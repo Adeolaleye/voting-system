@@ -26,80 +26,30 @@
               <div class="col-lg-4 order-lg-1">
                 <div class="card-profile-stats d-flex justify-content-center">
                   <div class="count">
-                    <span class="heading">{{ $categories_count }}</span>
-                    <span class="description">Categories</span>
+                    <span class="heading">{{ $checkedin }}</span>
+                    <span class="description">Checked</span>
                   </div>
                   <div class="count">
-                    <span class="heading">{{ $nominess_count}}</span>
-                    <span class="description">Nominees</span>
-                  </div>
-                  <div class="count">
-                    <span class="heading">{{ $voters_count }}</span>
-                    <span class="description">Voters</span>
+                    <span class="heading">{{ $unchecked }}</span>
+                    <span class="description">Unchecked</span>
                   </div>
                   <div class="count">
                     <span class="heading">{{ $bookedsits_count }}</span>
                     <span class="description">Attendees</span>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="text-center mt-6">
-              <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Welcome {{ Auth::user()->name }}</div>
-              <h2><strong>Voting Result</strong></h2>
-              <span class="font-weight-light">Total number of votes are {{ $vote_count }}</span><br>
-              <a href="{{ route('sitreserved') }}" class="font-weight-light">View Sit Reservation Details</a>
-            </div>
-            <hr>
-            <div class="row">
-              @foreach($conts as $cont)  
-              <div class="col-lg-6 mt-2">
-                <div class="info info-horizontal info-hover-primary card shadow m-2">
-                  <div class="description p-4">
-                    <form method="POST" action="{{ route('deletecat') }}"> 
-                      <input type="hidden" name="id" value="{{ $cont->id }}">
-                      <button type="submit" class="close" data-toggle="tooltip" data-placement="top" aria-label="Close" title="Delete Category"><span aria-hidden="true">&times;</span>
-                      </button>
-                      @csrf
-                    </form>
-                    <p class="text-center">{{ $cont->contestantcategories }}</p>
+                  <div class="count">
+                    <span class="heading">{{ $highest }}</span>
+                    <span class="description">No of tables</span>
                   </div>
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name of Nominees</th>
-                        <th scope="col">No of Votes</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @php 
-                        $i = 1;
-                        @endphp
-                      @foreach($cont->contestants as $contestant)
-                      <tr>
-                        <td scope="row">{{ $i++ }}</td>
-                        <td>{{ $contestant->name }}</td>
-                        <td>{{ $contestant->votecount }}</td>
-                        <td>
-                          {{-- <a href="{{ route('contestant.edit', $contestant->id) }}" class="btn btn-sm btn-info">Edit</a>
-                          <a href="#" class="btn btn-sm btn-danger float-right">Delete</a> --}}
-                        </td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>                
                 </div>
               </div>
-              @endforeach
             </div>
-            <hr>
-            <div class="row">
-              {{-- <div class="col-lg-12"><h2 class="title display-3 text-center">Voting Result</h2></div> --}}
-              <div class="col-lg-12 mt-2" id="reserve">
-                <div class="info info-horizontal info-hover-primary card shadow m-2">
-                  <div class="description p-4">
-                    <p class="text-center">Details of Sits Reserved</p>
+            <div class="row mt-2">
+              <div class="col-lg-12" id="reserve">
+                <div class="info info-horizontal info-hover-primary m-2">
+                  <div class="description p-4 text-center">
+                    <h4 class="mt-2">Details of Sits Reserved</h4>
+                    <a href="result" class="font-weight-light">Back Home</a>
                   </div>
                   <table id="example" class="table table-hover">
                     <thead>

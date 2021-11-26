@@ -32,6 +32,8 @@ Route::Post('votecontestant', 'ContestantCatController@vote')->name('vote4contes
 Route::view('feedback','admin.login');
 Route::resource('sitreservation','ReserveController');
 Route::Post('sitreservation', 'ReserveController@store')->name('ticket');
+Route::post('checkin/{id}', 'ReserveController@checkin')->name('checkin');
+Route::get('sitreserved', 'ReserveController@checking')->name('sitreserved');
 //Route::view('yourticket','bookings.ticket');
 
 Auth::routes();

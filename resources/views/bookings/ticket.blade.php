@@ -22,7 +22,8 @@
                   <span class="h5">Name :</span> <span class="h5 font-weight-300">{{ $bookasit->name }}</span><br>
                   <span class="h5">Email :</span> <span class="h5 font-weight-300">{{ $bookasit->email }}</span><br>
                   <span class="h5">Phone No :</span> <span class="h5 font-weight-300">{{ $bookasit->phone }}</span><br>
-                  <span class="h5">Sit No:</span> <span class="h5 font-weight-300">{{ $bookasit->sitno }}</span><br>
+                  <span class="h5">Table No:</span> <span class="h5 font-weight-300">{{ $bookasit->table_no }}</span><br>
+                  <span class="h5">Attendant N0:</span> <span class="h5 font-weight-300">{{ $bookasit->sitno }}</span><br>
                   {{-- <div class="text-center">
                     <button type="submit" class="text-center btn btn-primary my-4 " onclick="takeshot()">Print</button> 
                   </div> --}}

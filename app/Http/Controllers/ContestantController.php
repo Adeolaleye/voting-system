@@ -57,7 +57,7 @@ class ContestantController extends Controller
      */
     public function edit(Contestant $contestant)
     {
-return view()
+return view();
     }
 
     /**

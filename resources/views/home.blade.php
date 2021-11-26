@@ -16,39 +16,44 @@
                         <h2 class="display-4 font-weight-normal text-white">The opportunity to vote your preferred nominees is here</h2>
                         <div class="mt-6">
                             <ul id="countdown">
-                              @if ( $enddate > $now)
-                                <li>
-                                  <div id="days" class="number">00</div>
-                                  <div class="label">Days</div>
-                                </li>
-                                <li>
-                                  <div id="hours" class="number">00</div>
-                                  <div class="label">Hours</div>
-                                </li>
-                                <li>
-                                  <div id="minutes" class="number">00</div>
-                                  <div class="label">Minutes</div>
-                                </li>
-                                <li>
-                                  <div id="seconds" class="number">00</div>
-                                  <div class="label">Seconds</div>
-                                </li>                              
-                              @endif
-                              @if ( $enddate <= $now) 
+                              <!--@if ( $enddate > $now)-->
+                              <!--  <li>-->
+                              <!--    <div id="days" class="number">00</div>-->
+                              <!--    <div class="label">Days</div>-->
+                              <!--  </li>-->
+                              <!--  <li>-->
+                              <!--    <div id="hours" class="number">00</div>-->
+                              <!--    <div class="label">Hours</div>-->
+                              <!--  </li>-->
+                              <!--  <li>-->
+                              <!--    <div id="minutes" class="number">00</div>-->
+                              <!--    <div class="label">Minutes</div>-->
+                              <!--  </li>-->
+                              <!--  <li>-->
+                              <!--    <div id="seconds" class="number">00</div>-->
+                              <!--    <div class="label">Seconds</div>-->
+                              <!--  </li>                              -->
+                              <!--@endif-->
+                              <!--@if ( $enddate >= $now) -->
                                 <h2 class="display-4 font-weight-normal text-white">Voting Closed!</h2>                           
-                              @endif
+                              <!--@endif-->
                             </ul> 
                         </div>
-                        @if ( $enddate > $now)
-                        <div class="btn-wrapper mt-2">
-                            <a href="#vote" class="btn btn-primary btn-icon mt-3 mb-sm-0">
-                                <span class="btn-inner--text">Vote Now</span>
-                            </a>
-                            {{-- <a href="{{route ('ticket') }}" class="btn btn-neutral btn-icon mt-3 mb-sm-0">
-                                <span class="btn-inner--text">Book A Sit</span>
-                            </a> --}}
-                        </div>
-                        @endif
+
+                        <a href="{{route ('ticket') }}" class="btn btn-neutral btn-icon mt-3 mb-sm-0">
+                           <span class="btn-inner--text">Book A Sit</span>
+                        </a>
+
+                        <!--@if ( $enddate > $now)-->
+                        <!--<div class="btn-wrapper mt-2">-->
+                        <!--    <a href="#vote" class="btn btn-primary btn-icon mt-3 mb-sm-0">-->
+                        <!--        <span class="btn-inner--text">Vote Now</span>-->
+                        <!--    </a>-->
+                        <!--    {{-- <a href="{{route ('ticket') }}" class="btn btn-neutral btn-icon mt-3 mb-sm-0">-->
+                        <!--        <span class="btn-inner--text">Book A Sit</span>-->
+                        <!--    </a> --}}-->
+                        <!--</div>-->
+                        <!--@endif-->
                     </div>
                 </div>
             </div>
@@ -65,38 +70,38 @@
     <div class="container">
         <div class="py-3 mb-3 border-bottom text-center">
             <div class="row justify-content-center">
-              <div class="col-lg-9">
-                <p>In view of the pivotal role of the Media in National development and in realization of her core objectives, the stardom Global Award Series, an Sgtv Hall of Fame recognition hope to identify excellence, innovation, competition achievement of Nigerians in all walls of Life and celebrate some in a yearly grand style award and induction of outstanding achievers into the Sgtv Hall of Fame. This is to promote culture of excellence performance and patriotism in public service.</p>
+              <div class="col-lg-11">
+                <p>In view of the pivotal and constitutional roles and responsibilities of the Media in agenda setting for national development and in realization of her core objectives, the Stardom Global Award Series, an <b>Sgtv Hall of Fame</b> recognition hope to identify excellence, innovation, competitive achievement of Nigerians in all walls of life and celebrate their performances as a catalyst for national competitive prosperity in a yearly grand style award and induction of outstanding achievers into the <b>Sgtv Hall of Fame</b>. This is to promote culture of excellent performance and patriotism in public service.<br><br> Previous edition of this August occasion in December have shown class, acceptability, excellence and reward for performance in public service. 2021 edition comes with greater endorsement and popularity that will be unprecedented in the media industry.<br><br>As long standing viewers, we have given you the platform to decide who the winners are. Scroll down and vote your choices.</p>
                 <a href="https://sgtv.tv/" target="_black">Learn more</a>
               </div>
             </div>
           </div>
-        <div class="row">
-            @if ($enddate > $now)
-              <div class="col-lg-12">
-                  <h2 class="title display-3 text-center">Categories</h2>
-              </div>
-              @if ($counter > 0)
-                  @foreach ($contestantCat as $contestant)
-                  <div class="col-lg-6">
-                      <div class="info info-horizontal info-hover-primary card shadow m-4">
-                          <div class="description p-4">
-                              <p class="text-center">{{$contestant->contestantcategories}}</p>
-                              <a href="{{ route('contestant.show', $contestant->id) }}"
-                                  class="btn btn-primary mb-4 mt-4 center">Click to vote</a>
-                          </div>
-                      </div>
-                  </div>
-                  @endforeach 
-              @endif
-              @if ($counter == 0)
-                  <p>No Contestant Available</p>
-              @endif
-            @endif
-            @if ( $enddate <= $now) 
+        <!--<div class="row">-->
+        <!--    @if ($enddate > $now)-->
+        <!--      <div class="col-lg-12">-->
+        <!--          <h2 class="title display-3 text-center">Categories</h2>-->
+        <!--      </div>-->
+        <!--      @if ($counter > 0)-->
+        <!--          @foreach ($contestantCat as $contestant)-->
+        <!--          <div class="col-lg-6">-->
+        <!--              <div class="info info-horizontal info-hover-primary card shadow m-4">-->
+        <!--                  <div class="description p-4">-->
+        <!--                      <p class="text-center">{{$contestant->contestantcategories}}</p>-->
+        <!--                      <a href="{{ route('contestant.show', $contestant->id) }}"-->
+        <!--                          class="btn btn-primary mb-4 mt-4 center">Click to vote</a>-->
+        <!--                  </div>-->
+        <!--              </div>-->
+        <!--          </div>-->
+        <!--          @endforeach -->
+        <!--      @endif-->
+        <!--      @if ($counter == 0)-->
+        <!--          <p>No Contestant Available</p>-->
+        <!--      @endif-->
+        <!--    @endif-->
+        <!--    @if ( $enddate <= $now) -->
                                             
-            @endif
-        </div>
+        <!--    @endif-->
+        <!--</div>-->
     </div>
 </div>
 <br /><br />
@@ -141,7 +146,7 @@ hour = minute * 60,
 day = hour * 24;
 let today = new Date(),
                 // month/day/year
-      enddate =  '11/10/2021 23:49:00';
+      enddate =  '11/14/2021 23:49:00';
   const countDown = new Date(enddate).getTime(),
       x = setInterval(function() {    
 
